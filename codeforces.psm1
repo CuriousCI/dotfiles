@@ -1,13 +1,6 @@
 $Template = "$PSScriptRoot\template"
 $Problemset = "D:\competitive\problemset"
-# $Contests = "D:\competitive\codeforces"
 $Backup = "D:\projects\codeforces"
-
-# function Edit([string]$Folder) {
-# 	Enter-VsDevShell 721d6c03
-# 	code $Folder
-# 	Stop-Process $PID
-# }
 
 function New-Problem {
 	[CmdletBinding()]
@@ -45,30 +38,5 @@ function Backup-Problems {
 
 	Stop-Process $PID
 }
-
-# function New-Contest {
-# 	[CmdletBinding()]
-# 	param (
-# 		[Parameter(Mandatory = $true)]
-# 		[ValidateSet('Round', 'Educational', 'Global', 'Test', 'April-Fools')]
-# 		[string]$Type,
-
-# 		[Parameter(Mandatory = $true)]
-# 		[uint32]$Id,
-
-# 		[uint16]$Problems = 6 
-# 	)
-
-# 	Set-Location $Contests 
-# 	$Contest = "$($Type.ToLower())-$Id"
-
-# 	if (-Not (Test-Path $Contest)) {
-# 		New-Item $Contest -ItemType Directory
-# 		(1..$Problems).ForEach( { Copy-Item $Template\main.cpp $Contest\$([char]($_ + 64)).cpp } )
-# 		Copy-Item $Template\.vscode $Contest -Recurse
-# 	}
-
-# 	Edit $Contest
-# }
 
 Export-ModuleMember -Function New-Problem, Backup-Problems
