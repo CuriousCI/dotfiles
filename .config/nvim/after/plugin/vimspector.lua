@@ -1,0 +1,36 @@
+-- vim.api.nvim_set_keymap('n', '<leader>dr', [[<cmd>call vimspector#Launch()<cr>]], { noremap = true, silent = true })
+-- -- vim.api.nvim_set_keymap('n', '<leader>dm', [[<cmd>call GotoWindow(g:vimspector_session_windows#code)<cr>]], { noremap = true, silent = true })
+-- -- vim.api.nvim_set_keymap('n', '<leader>dv', [[<cmd>call GotoWindow(g:vimspector_session_windows#variables)<cr>]], { noremap = true, silent = true })
+-- -- vim.api.nvim_set_keymap('n', '<leader>dw', [[<cmd>call GotoWindow(g:vimspector_session_windows#watches)<cr>]], { noremap = true, silent = true })
+-- -- vim.api.nvim_set_keymap('n', '<leader>ds', [[<cmd>call GotoWindow(g:vimspector_session_windows#stack_trace)<cr>]], { noremap = true, silent = true })
+-- -- vim.api.nvim_set_keymap('n', '<leader>do', [[<cmd>call GotoWindow(g:vimspector_session_windows#output)<cr>]], { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap('n', '<leader>dx', [[<cmd>call vimspector#Reset()<cr>]], { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap('n', '<leader>dX', [[<cmd>call vimspector#ClearBreakpoints()<cr>]], { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap('n', '<S-k>', [[<cmd>call vimspector#StepOut()<cr>]], { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap('n', '<S-l>', [[<cmd>call vimspector#StepInto()<cr>]], { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap('n', '<S-j>', [[<cmd>call vimspector#StepOver()<cr>]], { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap('n', '<leader>d_', [[<cmd>call vimspector#Restart()<cr>]], { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap('n', '<leader>dc', [[<cmd>call vimspector#Continue()<cr>]], { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap('n', '<leader>drc', [[<cmd>call vimspector#RunToCursor()<cr>]], { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap('n', '<leader>db', [[<cmd>call vimspector#ToggleBreakpoint()<cr>]], { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap('n', '<leader>de', [[<cmd>call vimspector#ToggleConditionalBreakpoint()<cr>]], { noremap = true, silent = true })
+--
+-- -- Vimspector options
+-- -- vim.cmd([[
+-- -- let g:vimspector_sidebar_width = 85
+-- -- let g:vimspector_bottombar_height = 15
+-- -- let g:vimspector_terminal_maxwidth = 70
+-- -- ]])
+-- --
+--
+-- vim.cmd[[
+-- fun! GotoWindow(id)
+--    :call win_gotoid(a:id)
+-- endfun
+-- nnoremap <leader>dm :call GotoWindow(g:vimspector_session_windows.code)<CR>
+-- nnoremap <leader>dv :call GotoWindow(g:vimspector_session_windows.variables)<CR>
+-- nnoremap <leader>dw :call GotoWindow(g:vimspector_session_windows.watches)<CR>
+-- nnoremap <leader>ds :call GotoWindow(g:vimspector_session_windows.stack_trace)<CR>
+-- nnoremap <leader>do :call GotoWindow(g:vimspector_session_windows.output)<CR>
+-- nnoremap <leader>di :call AddToWatch()<CR>
+-- ]]
