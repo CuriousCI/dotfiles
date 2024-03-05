@@ -14,7 +14,7 @@ set $mod Mod1
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 # font pango:monospace 11
-font pango:Caskaydia Cove Nerd Font 10
+font pango:CaskaydiaCoveNerdFont 10 
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -33,7 +33,7 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
-exec --no-startup-id nm-applet
+# exec --no-startup-id nm-applet
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -271,12 +271,11 @@ bindsym XF86AudioPause exec playerctl pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
-bindsym $mod+shift+x exec poweroff
 bindsym $mod+g exec firefox
-bindsym $mod+o exec alacritty -e ranger
-bindsym $mod+shift+p exec dash -e slock
-bindsym $mod+u exec firefox --new-window https://curiousci.github.io/schedule/
 bindsym $mod+t exec firefox --new-window https://web.telegram.org
+bindsym $mod+o exec alacritty -e ranger
+bindsym $mod+shift+x exec poweroff
+bindsym $mod+shift+p exec dash -e slock
 
 bindsym Print exec --no-startup-id maim "/home/cicio/images/$(date).png"
 bindsym $mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow) "/home/cicio/images/$(date).png"
