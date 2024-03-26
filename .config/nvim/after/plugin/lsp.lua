@@ -60,7 +60,11 @@ cmp.setup {
 
 require 'luasnip'.filetype_extend('htmldjango', { 'html' })
 require 'lspconfig'.pylsp.setup {}
+require 'lspconfig'.emmet_language_server.setup {
+    filetypes = { 'liquid' }
+}
 require 'lspconfig'.lua_ls.setup { settings = { Lua = { diagnostics = { globals = { 'vim' } } } } }
+require 'lspconfig'.clangd.setup {}
 require 'lspconfig'.tailwindcss.setup {}
 require 'nvim-treesitter.parsers'.get_parser_configs().liquid = {
     install_info = {
