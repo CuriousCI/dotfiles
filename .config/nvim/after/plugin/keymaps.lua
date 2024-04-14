@@ -2,12 +2,14 @@ local opts = { noremap = true, silent = true }
 
 -- Tools
 
+vim.api.nvim_set_keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", { noremap = true, silent = true })
+
 vim.api.nvim_set_keymap('n', '<leader>f', [[<cmd>Telescope find_files<cr>]], opts)
 vim.api.nvim_set_keymap('n', '<leader>g', [[<cmd>Telescope live_grep<cr>]], opts)
 vim.api.nvim_set_keymap('n', '<leader>t', [[<cmd>TroubleToggle<cr>]], opts)
 vim.api.nvim_set_keymap('n', '<leader>v', [[<cmd>Explore<cr>]], opts)
 
-vim.api.nvim_set_keymap('n', '<leader>q', [[<cmd>q<cr>]], opts)
+vim.api.nvim_set_keymap('n', 'q', [[<cmd>q<cr>]], opts)
 
 -- Panels
 

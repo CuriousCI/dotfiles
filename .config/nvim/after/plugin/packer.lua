@@ -24,8 +24,11 @@ return require 'packer'.startup(function(use)
     use 'rafamadriz/friendly-snippets'
 
     use 'mrcjkb/rustaceanvim'
+    use 'mfussenegger/nvim-jdtls'
+
     use 'nvim-lua/plenary.nvim'
     use 'nvim-treesitter/nvim-treesitter'
+    use 'christoomey/vim-tmux-navigator'
     use {
         'stevearc/conform.nvim',
         config = function()
