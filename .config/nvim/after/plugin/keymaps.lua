@@ -1,24 +1,39 @@
 local opts = { noremap = true, silent = true }
+local telescope = require 'telescope.builtin'
 
--- Tools
+vim.keymap.set('n', 'ca', vim.lsp.buf.code_action)
+vim.keymap.set('n', 'gd', vim.lsp.buf.definition)
+vim.keymap.set('n', 'ds', vim.lsp.buf.document_symbol)
+vim.keymap.set('n', 'K', vim.lsp.buf.hover)
+vim.keymap.set('n', '<leader>I', vim.lsp.buf.implementation)
+vim.keymap.set('n', '<leader>r', vim.lsp.buf.references)
+vim.keymap.set('n', '<leader>R', vim.lsp.buf.rename)
+vim.keymap.set('n', 'sh', vim.lsp.buf.signature_help)
+vim.keymap.set('n', 'td', vim.lsp.buf.type_definition)
 
-vim.api.nvim_set_keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>D', vim.diagnostic.open_float)
+vim.keymap.set('n', '[d', vim.diagnostic.goto_next)
+vim.keymap.set('n', ']d', vim.diagnostic.goto_prev)
 
-vim.api.nvim_set_keymap('n', '<leader>f', [[<cmd>Telescope find_files<cr>]], opts)
-vim.api.nvim_set_keymap('n', '<leader>g', [[<cmd>Telescope live_grep<cr>]], opts)
-vim.api.nvim_set_keymap('n', '<leader>t', [[<cmd>TroubleToggle<cr>]], opts)
-vim.api.nvim_set_keymap('n', '<leader>v', [[<cmd>Explore<cr>]], opts)
+vim.keymap.set('n', '<leader>t', function() vim.cmd [[Trouble diagnostics toggle]] end, opts)
 
-vim.api.nvim_set_keymap('n', 'q', [[<cmd>q<cr>]], opts)
+vim.keymap.set('n', '<leader>f', telescope.find_files)
+vim.keymap.set('n', '<leader>g', telescope.live_grep)
 
--- Panels
+vim.keymap.set('n', '<leader>v', vim.cmd.Ex)
+vim.keymap.set('n', 'Q', vim.cmd.q)
 
-vim.api.nvim_set_keymap('n', '<leader>i', [[<cmd>botright vs<cr>]], opts)
-vim.api.nvim_set_keymap('n', '<leader>o', [[<cmd>botright vs<cr><cmd>lua require('telescope.builtin').live_grep()<cr>]],
-    opts)
-vim.api.nvim_set_keymap('n', '<leader>p', [[<cmd>botright vs<cr><cmd>lua require('telescope.builtin').find_files()<cr>]],
-    opts)
-vim.api.nvim_set_keymap('n', '<leader>d', [[<cmd>sp<cr><cmd>lua require('telescope.builtin').find_files()<cr>]], opts)
+vim.keymap.set('n', '<leader>i', function() vim.cmd [[bo vs]] end, opts)
 
-vim.api.nvim_set_keymap('n', '\\', [[<cmd>:vertical resize +20<cr>]], opts)
-vim.api.nvim_set_keymap('n', '|', [[<cmd>:vertical resize -20<cr>]], opts)
+vim.keymap.set('n', '\\', function() vim.cmd [[vert res +20]] end, opts)
+vim.keymap.set('n', '|', function() vim.cmd [[vert res -20]] end, opts)
+
+vim.keymap.set('n', '<leader>p', function()
+    vim.cmd [[bo vs]]
+    telescope.find_files()
+end, opts)
+
+vim.keymap.set('n', '<leader>d', function()
+    vim.cmd [[bo vs]]
+    telescope.live_grep()
+end, opts)

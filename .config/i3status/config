@@ -12,6 +12,7 @@ general {
     color_good = "#b8bb26"
     color_degraded = "#fabd2f"
     color_bad = "#fb4934"
+    markup = "pango"
 }
 
 order += "ethernet _first_"
@@ -26,28 +27,27 @@ ethernet _first_ {
 }
 
 wireless _first_ {
-	format_up = "  %essid"
+	format_up = "<span size=\"14pt\"></span> %essid"
     format_down = ""
+    color_degraded = "#b8bb26"
 }
 
 volume master {
-    format = "󰝚 %volume"
-    format_muted = "󰝛 %volume"
+    format = "<span size=\"13pt\"></span> %volume"
+    format_muted = "<span size=\"13pt\"></span> %volume"
 	device = "default"
     mixer = "Master"
     mixer_idx = 0
 }
 
-
 battery all {
 	format = "%status %percentage %remaining"
-    status_chr = "󱐋"
-    status_bat = " "
+    status_chr = "<span size=\"13pt\"></span>"
+    status_bat = "<span size=\"13pt\"></span>"
     status_unk = "?"
-    status_full = " "
+    status_full = "<span size=\"13pt\"></span>"
 }
 
-
 tztime local {
-	format = "%d/%m/%Y %H:%M "
+	format = "%d/%m/%Y <b>%H:%M</b> "
 }

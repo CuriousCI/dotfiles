@@ -1,20 +1,46 @@
-# Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
-HISTSIZE=1000
-SAVEHIST=1000
-JAVA_HOME=/usr/lib/jvm/java-1.8-openjdk/
+HISTSIZE=5000
+SAVEHIST=$HISTSIZE
+HISTDUP=erase
+
+setopt appendhistory
+setopt sharehistory
+setopt hist_ignore_space
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_ignore_dups
+setopt hist_find_no_dups
+
+PATH=$PATH:/home/cicio/.local/bin:$HOME/.cargo/bin:/home/cicio/sandbox/smlnj/bin
+
+autoload -Uz compinit && compinit
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ':completion:*' list-colors '${(s.:.)LS_COLORS}'
+
+alias ls='ls --color'
+alias dir='dir --color'
+alias vdir='vdir --color'
+alias grep='grep --color'
+alias fgrep='fgrep --color'
+alias egrep='egrep --color'
 alias dotfiles="'/usr/bin/git' --git-dir=$HOME/dotfiles --work-tree=$HOME"
-unsetopt autocd beep extendedglob notify
+alias t="tmux -2"
+alias tn="t new -t"
+alias tls="t ls"
+alias ta="t a -t"
+
+export LESS_TERMCAP_mb=$'\E[33m'
+export LESS_TERMCAP_md=$'\E[01;33m'
+export LESS_TERMCAP_me=$'\E[00m'
+export LESS_TERMCAP_ms=$'\E[07m'
+export LESS_TERMCAP_us=$'\E[04;32m'
+export LESS_TERMCAP_ue=$'\E[00m'
+export LESS_COLORIZED=1
+
 bindkey -v
-# End of lines configured by zsh-newuser-install
-# The following lines were added by compinstall
-zstyle :compinstall filename '/home/cicio/.zshrc'
+bindkey -s ^f "tmux-sessionizer\n"
+bindkey -s ^d ". dir-navigator\n"
 
-autoload -Uz compinit
-compinit
+PS1=$'%B%F{yellow}%2~%f%b '
 
-# alias mars="java -jar /home/cicio/Downloads/Mars4_5.jar"
-# ZSH_THEME=robbyrussel
-PS1='%B%F{240}%2~%f%b '
-# PS1='%/ $ ' # david@macbook /tmp $
-# End of lines added by compinstall
+eval "$(fzf --zsh)"
