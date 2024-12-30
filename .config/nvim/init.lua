@@ -1,5 +1,6 @@
 vim.g.mapleader = ' '
 vim.g.typst_pdf_viewer = 'firefox'
+vim.g.netrw_winsize = 0
 vim.o.conceallevel = 2
 vim.opt.nu = true
 vim.opt.relativenumber = true
@@ -8,6 +9,7 @@ vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 vim.opt.smartindent = true
+vim.opt.smarttab = true
 vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.undofile = true
@@ -31,6 +33,11 @@ vim.cmd [[
 vim.api.nvim_create_autocmd('BufWritePre', {
     pattern = '*',
     callback = function() vim.lsp.buf.format() end
+})
+
+vim.api.nvim_create_autocmd('BufWritePost', {
+    pattern = '*.sml',
+    callback = function() vim.fn.execute(':! smlfmt --force ' .. vim.fn.expand('<afile>')) end
 })
 
 vim.api.nvim_create_autocmd('CursorHold', {

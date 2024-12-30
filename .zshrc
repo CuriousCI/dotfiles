@@ -11,7 +11,7 @@ setopt hist_save_no_dups
 setopt hist_ignore_dups
 setopt hist_find_no_dups
 
-PATH=$PATH:/home/cicio/.local/bin:$HOME/.cargo/bin:/home/cicio/sandbox/smlnj/bin
+PATH=$PATH:$HOME/.local/bin:$HOME/.cargo/bin:$HOME/sandbox/smlnj/bin:$HOME/projects/vdmj-suite-4.6.0/
 
 autoload -Uz compinit && compinit
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
@@ -36,6 +36,8 @@ export LESS_TERMCAP_ms=$'\E[07m'
 export LESS_TERMCAP_us=$'\E[04;32m'
 export LESS_TERMCAP_ue=$'\E[00m'
 export LESS_COLORIZED=1
+
+export CGO_ENABLED=1
 
 bindkey -v
 bindkey -s ^f "tmux-sessionizer\n"

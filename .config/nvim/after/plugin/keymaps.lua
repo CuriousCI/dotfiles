@@ -29,11 +29,22 @@ vim.keymap.set('n', '\\', function() vim.cmd [[vert res +20]] end, opts)
 vim.keymap.set('n', '|', function() vim.cmd [[vert res -20]] end, opts)
 
 vim.keymap.set('n', '<leader>p', function()
-    vim.cmd [[bo vs]]
+    vim.cmd [[Vexplore!]]
     telescope.find_files()
 end, opts)
 
 vim.keymap.set('n', '<leader>d', function()
-    vim.cmd [[bo vs]]
-    telescope.live_grep()
+    vim.cmd [[Hexplore]]
+    telescope.find_files()
 end, opts)
+
+vim.keymap.set('n', '<leader>i', function()
+    vim.cmd [[Vexplore!]]
+end, opts)
+
+vim.keymap.set('n', '<leader>-', function()
+    vim.cmd [[Hexplore]]
+end, opts)
+
+-- vim.cmd [[vs]]
+-- vim.cmd [[sp]]

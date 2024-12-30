@@ -22,8 +22,9 @@ order += "battery all"
 order += "tztime local"
 
 ethernet _first_ {
-    format_up = "󱎔"
-    format_down = ""
+    # format_up = "󱎔   󰒍  ∑  λ ∢  ζ ξ φ ϝ Ξ ∑"
+    format_up = "<span size=\"17pt\">∅</span>"
+    format_down = "<span size=\"17pt\" foreground=\"#fabd2f\">∅</span>"
 }
 
 wireless _first_ {
