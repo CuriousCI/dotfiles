@@ -20,7 +20,5 @@ return require 'packer'.startup(function(use)
     use 'folke/trouble.nvim'
     use 'nvim-lua/plenary.nvim'
     use 'nvim-treesitter/nvim-treesitter'
-    use 'christoomey/vim-tmux-navigator'
     use 'nvim-telescope/telescope.nvim'
-    use 'numToStr/Comment.nvim'
 end)

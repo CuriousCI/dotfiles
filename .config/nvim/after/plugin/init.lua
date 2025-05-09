@@ -1,7 +1,5 @@
 require 'mason'.setup {}
 
-require 'Comment'.setup {}
-
 require 'telescope'.setup {
     defaults = {
         borderchars = { '─', '│', '─', '│', '┌', '┐', '┘', '└' },
@@ -15,9 +13,9 @@ require 'telescope'.setup {
 require 'trouble'.setup {
     auto_close = true,
     icons = {
-        indent        = { middle = "", last = "", top = "", ws = "   " },
-        folder_closed = "",
-        folder_open   = "",
+        indent = { middle = '', last = '', top = '', ws = '   ' },
+        folder_closed = '',
+        folder_open = '',
     },
 }
 
