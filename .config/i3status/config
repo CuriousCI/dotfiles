@@ -22,33 +22,32 @@ order += "battery all"
 order += "tztime local"
 
 ethernet _first_ {
-    # format_up = "󱎔   󰒍  ∑  λ ∢  ζ ξ φ ϝ Ξ ∑"
-    format_up = "<span size=\"17pt\">∅</span>"
-    format_down = "<span size=\"17pt\" foreground=\"#fabd2f\">∅</span>"
+    format_up = "E"
+    format_down = ""
 }
 
 wireless _first_ {
-	format_up = "<span size=\"14pt\"></span> %essid"
+	format_up = "W: %essid"
     format_down = ""
     color_degraded = "#b8bb26"
 }
 
 volume master {
-    format = "<span size=\"13pt\"></span> %volume"
-    format_muted = "<span size=\"13pt\"></span> %volume"
+    format = "A: %volume"
+    format_muted = ""
 	device = "default"
     mixer = "Master"
     mixer_idx = 0
 }
 
 battery all {
-	format = "%status %percentage %remaining"
-    status_chr = "<span size=\"13pt\"></span>"
-    status_bat = "<span size=\"13pt\"></span>"
+	format = "%status: <span foreground=\"#fff\">%percentage</span> %remaining"
+    status_chr = "C"
+    status_bat = "B"
     status_unk = "?"
-    status_full = "<span size=\"13pt\"></span>"
+    status_full = "FULL"
 }
 
 tztime local {
-	format = "%d/%m/%Y <b>%H:%M</b> "
+	format = "%d/%m/%Y ; <span foreground=\"#fff\">%H:%M</span>"
 }

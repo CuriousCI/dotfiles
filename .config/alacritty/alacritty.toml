@@ -1,18 +1,15 @@
 [env]
-TERM = "alacritty-direct"
+TERM = 'alacritty-direct'
 
-[window.padding]
-x = 3
-y = 3
+[terminal]
+shell = "fish"
 
 [window]
-decorations = "None"
+decorations = 'None'
 dynamic_title = false
 
 [font]
-# size = 7.2
 size = 8.2
-offset = { x = 1, y = 1 }
 
 [font.normal]
 # family = "CaskaydiaCoveNerdFont"

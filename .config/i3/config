@@ -1,6 +1,6 @@
 set $mod Mod1
 
-# CaskaydiaCoveNerdFont 10 
+# font pango:CaskaydiaCoveNerdFont 10 
 font pango:CozetteVector 11
 
 # https://wiki.archlinux.org/index.php/XDG_Autostart
@@ -11,13 +11,12 @@ floating_modifier $mod
 
 bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Shift+q kill
-bindsym $mod+i exec ~/.local/bin/bemoji
-bindsym $mod+d exec --no-startup-id dmenu_run -i -c -nb '#282828' -nf '#ebdbb2' -sb '#282828' -sf '#fabd2f' -l 10
 bindsym $mod+g exec firefox
+bindsym $mod+z exec zathura
+bindsym $mod+w exec firefox --new-window https://web.whatsapp.com/
 bindsym $mod+t exec firefox --new-window https://web.telegram.org
-bindsym $mod+o exec alacritty -e yazi
 bindsym $mod+n exec alacritty -e nmtui
-bindsym $mod+shift+x exec poweroff
+bindsym $mod+d exec alacritty -T 'float' -e bash -c 'exec i3-msg -q "exec --no-startup-id $(find ${PATH//:/ } -maxdepth 1 -executable | fzf)"'
 
 bindsym $mod+h focus left
 bindsym $mod+j focus down
@@ -89,32 +88,36 @@ mode "resize" {
 
 bar {
     status_command i3status 
-    separator_symbol " | " # 
+    separator_symbol ";"
     padding 2px 4px
+    # workspace_min_width 20px
 
     colors {
-        background  #282828
-        statusline  #ebdbb2
-        separator   #504945
-        focused_workspace #282828 #282828 #b8bb26
-        active_workspace #282828 #282828 #fabd2f
-        inactive_workspace #282828 #282828 #fabd2f
-        urgent_workspace #282828 #282828 #fb4934
-        binding_mode #282828 #282828 #fb4934
+        # background #282828
+        background #202020
+        statusline #928374
+        # separator #928374
+        separator #555555
+
+        # focused_workspace #282828 #282828 #fabd2f
+        # active_workspace #282828 #282828 #fabd2f
+        # inactive_workspace #282828 #282828 #928374
+        # urgent_workspace #282828 #282828 #fb4934
+        # binding_mode #282828 #282828 #fb4934
+
+        focused_workspace #202020 #202020 #fabd2f
+        active_workspace #202020 #202020 #fabd2f
+        inactive_workspace #202020 #202020 #928374
+        urgent_workspace #202020 #202020 #fb4934
+        binding_mode #202020 #202020 #fb4934
     }
 }
 
-client.focused          #b29871 #5F676A #FFFFFF #b29871 #b29871
-client.focused_inactive #333333 #5F676A #FFFFFF #484E50 #5F676A
-client.unfocused        #333333 #222222 #888888 #292D2E #555555
-client.urgent           #2F343A #900000 #FFFFFF #900000 #900000
-client.placeholder      #000000 #0C0C0C #FFFFFF #000000 #0C0C0C
-default_border pixel 1
-default_floating_border pixel 1
-for_window [all] border pixel 1
-for_window [title="Minesweeper"] floating enable
-for_window [title="Java Swing"] floating enable
-for_window [title="GNUPlot"] floating enable
+for_window [title="float"] floating enable
+
+default_border none
+default_floating_border none 
+for_window [all] border none 
 
 bindsym XF86MonBrightnessUp exec xbacklight -inc 5 # increase screen brightness
 bindsym XF86MonBrightnessDown exec xbacklight -dec 5 # decrease screen brightness
@@ -130,6 +133,6 @@ bindsym XF86AudioPause exec playerctl pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
-bindsym Print exec --no-startup-id maim "/home/cicio/Pictures/$(date +%Y-%m-%d_%H:%M:%S.%3N).png"
-bindsym Shift+Print exec --no-startup-id maim --select  "/home/cicio/Pictures/$(date +%Y-%m-%d_%H:%M:%S.%3N).png"
-bindsym Control+Print exec --no-startup-id maim --window $(xdotool getactivewindow) "/home/cicio/Pictures/$(date +%Y-%m-%d_%H:%M:%S.%3N).png"
+bindsym Print exec --no-startup-id maim "$HOME/Pictures/$(date +%Y-%m-%d_%H:%M:%S.%3N).png"
+bindsym Shift+Print exec --no-startup-id maim --select  "$HOME/Pictures/$(date +%Y-%m-%d_%H:%M:%S.%3N).png"
+bindsym Control+Print exec --no-startup-id maim --window $(xdotool getactivewindow) "$HOME/Pictures/$(date +%Y-%m-%d_%H:%M:%S.%3N).png"
