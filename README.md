@@ -1,2 +1,0 @@
-# scripts
-custom PowerShell scripts
