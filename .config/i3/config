@@ -1,12 +1,9 @@
 set $mod Mod1
 
-# font pango:CaskaydiaCoveNerdFont 10 
-font pango:CozetteVector 11
+font pango:Cozette 13px
 
-# https://wiki.archlinux.org/index.php/XDG_Autostart
 exec --no-startup-id dex --autostart --environment i3
 
-# Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
 bindsym $mod+Return exec i3-sensible-terminal
@@ -14,9 +11,8 @@ bindsym $mod+Shift+q kill
 bindsym $mod+g exec firefox
 bindsym $mod+z exec zathura
 bindsym $mod+w exec firefox --new-window https://web.whatsapp.com/
-bindsym $mod+t exec firefox --new-window https://web.telegram.org
-bindsym $mod+n exec alacritty -e nmtui
-bindsym $mod+d exec alacritty -T 'float' -e bash -c 'exec i3-msg -q "exec --no-startup-id $(find ${PATH//:/ } -maxdepth 1 -executable | fzf)"'
+bindsym $mod+t exec telegram-desktop
+bindsym $mod+d exec alacritty -T 'AlacrittyFloat' -e bash -c 'exec i3-msg -q "exec --no-startup-id $(find ${PATH//:/ } -maxdepth 1 -executable | fzf)"'
 
 bindsym $mod+h focus left
 bindsym $mod+j focus down
@@ -47,7 +43,7 @@ set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
 
-bindsym $mod+1 workspace number $ws1
+bindsym $mod+1 workspace number $ws1 
 bindsym $mod+2 workspace number $ws2
 bindsym $mod+3 workspace number $ws3
 bindsym $mod+4 workspace number $ws4
@@ -76,63 +72,55 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 bindsym $mod+r mode "resize"
 
 mode "resize" {
-        bindsym h resize shrink width 10 px or 10 ppt
-        bindsym j resize grow height 10 px or 10 ppt
-        bindsym k resize shrink height 10 px or 10 ppt
-        bindsym l resize grow width 10 px or 10 ppt
+    bindsym h resize shrink width 10 px or 10 ppt
+    bindsym j resize grow height 10 px or 10 ppt
+    bindsym k resize shrink height 10 px or 10 ppt
+    bindsym l resize grow width 10 px or 10 ppt
 
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-        bindsym $mod+r mode "default"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym $mod+r mode "default"
 }
 
 bar {
-    status_command i3status 
-    separator_symbol ";"
-    padding 2px 4px
-    # workspace_min_width 20px
+    status_command i3status
+    separator_symbol " - "
+    padding 3px 6px
 
     colors {
-        # background #282828
-        background #202020
-        statusline #928374
-        # separator #928374
-        separator #555555
+        background #282828
+        statusline #ebdbb2
+        separator #928374
 
-        # focused_workspace #282828 #282828 #fabd2f
-        # active_workspace #282828 #282828 #fabd2f
-        # inactive_workspace #282828 #282828 #928374
-        # urgent_workspace #282828 #282828 #fb4934
-        # binding_mode #282828 #282828 #fb4934
-
-        focused_workspace #202020 #202020 #fabd2f
-        active_workspace #202020 #202020 #fabd2f
-        inactive_workspace #202020 #202020 #928374
-        urgent_workspace #202020 #202020 #fb4934
-        binding_mode #202020 #202020 #fb4934
+        focused_workspace #282828 #282828 #fabd2f
+        active_workspace #282828 #282828 #fabd2f
+        inactive_workspace #282828 #282828 #928374
+        urgent_workspace #282828 #282828 #fb4934
+        binding_mode #282828 #282828 #fb4934
     }
 }
 
-for_window [title="float"] floating enable
+for_window [class="Alacritty" title="AlacrittyFloat"] floating enable
 
-default_border none
-default_floating_border none 
-for_window [all] border none 
+gaps inner 8
+smart_gaps on
+smart_borders on
 
-bindsym XF86MonBrightnessUp exec xbacklight -inc 5 # increase screen brightness
-bindsym XF86MonBrightnessDown exec xbacklight -dec 5 # decrease screen brightness
+default_border pixel 1
+default_floating_border pixel 1
+for_window [all] border pixel 1
 
-set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+client.focused          #000000 #000000 #000000 #000000   #d79921
+client.focused_inactive #000000 #000000 #000000 #000000   #928374
+client.unfocused        #000000 #000000 #000000 #000000   #928374
+client.urgent           #000000 #000000 #000000 #000000   #928374
+client.placeholder      #000000 #000000 #000000 #000000   #928374
 
-bindsym XF86AudioPlay exec playerctl play
-bindsym XF86AudioPause exec playerctl pause
-bindsym XF86AudioNext exec playerctl next
-bindsym XF86AudioPrev exec playerctl previous
+set $refresh_i3status pkill -SIGUSR1 i3status
 
-bindsym Print exec --no-startup-id maim "$HOME/Pictures/$(date +%Y-%m-%d_%H:%M:%S.%3N).png"
-bindsym Shift+Print exec --no-startup-id maim --select  "$HOME/Pictures/$(date +%Y-%m-%d_%H:%M:%S.%3N).png"
-bindsym Control+Print exec --no-startup-id maim --window $(xdotool getactivewindow) "$HOME/Pictures/$(date +%Y-%m-%d_%H:%M:%S.%3N).png"
+bindsym Print exec --no-startup-id maim --hidecursor | tee "$HOME/pictures/$(date +%Y-%m-%d_%H:%M:%S.%3N).png" | xclip -selection clipboard -t image/png
+bindsym Shift+Print exec --no-startup-id maim --hidecursor --select | tee "$HOME/pictures/$(date +%Y-%m-%d_%H:%M:%S.%3N).png" | xclip -selection clipboard -t image/png
+
+bindsym XF86AudioRaiseVolume exec --no-startup-id amixer set Master 2%+ unmute && $refresh_i3status 
+bindsym XF86AudioLowerVolume exec --no-startup-id amixer set Master 2%- && $refresh_i3status 
+bindsym XF86AudioMute exec --no-startup-id amixer set Master toggle && $refresh_i3status 
