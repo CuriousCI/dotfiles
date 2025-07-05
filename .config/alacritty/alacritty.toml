@@ -7,13 +7,10 @@ shell = "fish"
 [window]
 decorations = 'None'
 dynamic_title = false
-
-[font]
-size = 8.2
+padding = { x = 4, y = 4 }
 
 [font.normal]
-# family = "CaskaydiaCoveNerdFont"
-family = "CozetteVector"
+family = "Cozette"
 
 [colors.primary]
 background = '#282828'
